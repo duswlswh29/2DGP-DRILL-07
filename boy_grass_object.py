@@ -46,11 +46,18 @@ class Ball:
     def __init__(self):
         self.x=random.randint(20,780)
         self.y=599
-        self.image=[load_image('ball41x41.png'),load_image('ball21x21.png')]
-        self.image=random.choice(self.image)
+        if random.randint(0,1):
+           self.image=load_image('ball41x41.png')
+           self.big=True
+        else:
+           self.image=load_image('ball21x21.png')
+           self.big=False
         self.speed=random.randint(5,20)
     def update(self):
         self.y-=self.speed
+        if self.image==load_image('ball41x41.png'):
+            if self.y<78:
+                self.y=78
 
 
     def draw(self):
@@ -78,6 +85,7 @@ def reset_world():
     global grass
     global team
     global soccer
+
     world=[]
 
     grass=Grass() #Grass 도장을 이영해서 grass객체 생성
