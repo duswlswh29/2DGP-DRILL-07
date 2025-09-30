@@ -41,6 +41,21 @@ class Zombie:
         frame_width=self.image.w//10
         frame_height=self.image.h//10
         self.image.clip_draw(self.frame*frame_width,0,frame_width,frame_height,self.x,self.y,frame_width//2,frame_height//2)
+
+class Ball:
+    def __init__(self):
+        self.x=random.randint(20,780)
+        self.y=599
+        self.image=load_image('ball41x41.png')
+    def update(self):
+        self.y-=10
+        if self.y<100:
+            self.y=100
+    def draw(self):
+        self.image.draw(self.x,self.y)
+        pass
+
+
 def handle_events():
     global running
     events = get_events()
@@ -50,16 +65,23 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
 
+
+
+
+
+
 def reset_world():
     global running
     global world
     global grass
     global team
-
+    global soccer
     world=[]
 
     grass=Grass() #Grass 도장을 이영해서 grass객체 생성
+    ball=Ball()
     world.append(grass)
+    world.append(ball)
     team=[Boy()for _ in range(11)]
     world+=team
 
@@ -72,11 +94,13 @@ def update_world():
     for game_object in world:
         game_object.update()
 
+
     pass
 def render_world():
     clear_canvas()
     for game_object in world:
         game_object.draw()
+
     update_canvas()
 
     pass
