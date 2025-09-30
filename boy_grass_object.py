@@ -58,6 +58,9 @@ class Ball:
         if self.big:
             if self.y<76:
                 self.y=76
+        else:
+            if self.y<66:
+                self.y=66
 
 
     def draw(self):
