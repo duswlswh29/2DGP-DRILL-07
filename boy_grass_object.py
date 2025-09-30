@@ -46,7 +46,8 @@ class Ball:
     def __init__(self):
         self.x=random.randint(20,780)
         self.y=599
-        self.image=load_image('ball41x41.png')
+        self.image=[load_image('ball41x41.png'),load_image('ball21x21.png')]
+        self.image=random.choice(self.image)
     def update(self):
         self.y-=10
         if self.y<78:
