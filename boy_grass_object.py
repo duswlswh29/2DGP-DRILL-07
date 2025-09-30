@@ -49,8 +49,8 @@ class Ball:
         self.image=load_image('ball41x41.png')
     def update(self):
         self.y-=10
-        if self.y<100:
-            self.y=100
+        if self.y<78:
+            self.y=78
     def draw(self):
         self.image.draw(self.x,self.y)
         pass
@@ -83,6 +83,7 @@ def reset_world():
     world.append(grass)
     world.append(ball)
     team=[Boy()for _ in range(11)]
+
     world+=team
 
     global boy
