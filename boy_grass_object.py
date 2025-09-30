@@ -136,3 +136,4 @@ while running:
     render_world()
     delay(0.05)
 close_canvas()
+#완성
