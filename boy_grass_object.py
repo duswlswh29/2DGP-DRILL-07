@@ -9,8 +9,7 @@ class Grass:
         self.image = load_image('grass.png')
     def draw(self):
         self.image.draw(400, 30)
-    def draw(self):
-        self.image.draw(400,30)
+
         pass
     def update(self):
         pass
@@ -18,13 +17,12 @@ class Grass:
 
 class Boy:
     def __init__(self):
-        self.x,self.y = random.randint(100, 700),90
-
+        self.x,self.y = random.randint(0,800),90
         self.image=load_image('run_animation.png')
         self.frame=random.randint(0,7)
 
     def draw(self):
-        self.image.clip_draw(self.frame*100,0,100,100,self.x,90)
+        self.image.clip_draw(self.frame*100,0,100,100,self.x,self.y)
 
     def update(self):
         self.frame = (self.frame + 1) % 8
@@ -54,9 +52,9 @@ def handle_events():
 
 def reset_world():
     global running
-    running = True
-
     global world
+    global grass
+    global team
 
     world=[]
 
@@ -71,13 +69,14 @@ def reset_world():
     pass
 
 def update_world():
-    world.update()
-    boy.update()
+    for game_object in world:
+        game_object.update()
+
     pass
 def render_world():
     clear_canvas()
-    world.draw()
-    boy.draw() #호출하고 클래스에 드로우 정의
+    for game_object in world:
+        game_object.draw()
     update_canvas()
 
     pass
@@ -86,6 +85,7 @@ def render_world():
 
 
 open_canvas()
+running = True
 reset_world()
 
 while running:
