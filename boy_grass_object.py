@@ -83,8 +83,10 @@ def reset_world():
     world.append(grass)
     world.append(ball)
     team=[Boy()for _ in range(11)]
+    soccer=[Ball()for _ in range(20)]
 
     world+=team
+    world+=soccer
 
     global boy
     boy=Boy() # 먼저 찍어냄
